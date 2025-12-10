@@ -3,277 +3,423 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payroll Navigator - Cynergy Tax and Books</title>
-    <meta name="description" content="A strategic payroll execution guide from Cynergy Tax and Books, covering federal and state registration, employee onboarding, gross-to-net calculations, tax depositing, and quarterly/annual filings for compliance.">
-    <meta name="keywords" content="payroll guide, payroll compliance, tax depositing, W-2, W-4, EIN, FUTA, SUTA, payroll calculation, employee onboarding, Cynergy Tax and Books">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.cynergytaxandbooks.com/payroll-navigator.html">
-    <meta property="og:title" content="Payroll Navigator - Cynergy Tax and Books">
-    <meta property="og:description" content="A strategic payroll execution guide from Cynergy Tax and Books, covering federal and state registration, employee onboarding, gross-to-net calculations, tax depositing, and quarterly/annual filings for compliance.">
-    <meta property="og:image" content="https://www.cynergytaxandbooks.com/logo.png">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.cynergytaxandbooks.com/payroll-navigator.html">
-    <meta property="twitter:title" content="Payroll Navigator - Cynergy Tax and Books">
-    <meta property="twitter:description" content="A strategic payroll execution guide from Cynergy Tax and Books, covering federal and state registration, employee onboarding, gross-to-net calculations, tax depositing, and quarterly/annual filings for compliance.">
-    <meta property="twitter:image" content="https://www.cynergytaxandbooks.com/logo.png">
-
+    <title>Payroll Process Guide</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              'cynergy-blue': '#0D2F4B', // Deep Navy for text/contrast
-              'cynergy-orange': '#E0583B', // Brand Orange from Logo
-              'cynergy-gray': '#F8F9FA',
-              'cynergy-dark-gray': '#343A40',
-            }
-          }
-        }
-      }
-    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* Warm neutral light background */
-            color: #334155;
+        /* Custom scrollbar for sidebar */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
         }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1; 
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8; 
-        }
-
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
-        }
-        
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
-        }
-
-        .phase-card {
-            transition: all 0.3s ease;
-        }
-        .phase-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        
-        .nav-btn.active {
-            background-color: var(--tw-colors-cynergy-orange);
-            color: white;
-            border-color: var(--tw-colors-cynergy-orange);
-        }
-        
-        /* Interactive Inputs Range Slider Styling */
-        input[type=range] {
-            -webkit-appearance: none; 
-            width: 100%; 
-            background: transparent; 
-        }
-        
-        input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            height: 16px;
-            width: 16px;
-            border-radius: 50%;
-            background: var(--tw-colors-cynergy-orange);
-            cursor: pointer;
-            margin-top: -6px; 
-            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        }
-        
-        input[type=range]::-webkit-slider-runnable-track {
-            width: 100%;
-            height: 4px;
-            cursor: pointer;
-            background: #cbd5e1;
-            border-radius: 2px;
-        }
-
-        .fade-in {
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
-
-<script type="importmap">
-{
-  "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.354.0"
-  }
-}
-</script>
 </head>
-<body class="bg-cynergy-gray text-cynergy-dark-gray antialiased min-h-screen flex flex-col">
+<body class="bg-slate-50 font-sans text-slate-800 h-screen flex flex-col overflow-hidden">
 
-    <!-- Header (Main site header, remains static) -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center">
-                    <span class="text-2xl mr-2 text-cynergy-orange">🧭</span>
-                    <h1 class="text-xl font-bold tracking-tight text-cynergy-blue">Payroll Navigator</h1>
-                </div>
-                <!-- Main site navigation - adjust these links as needed if they are part of a larger app -->
-                <div class="hidden md:flex space-x-4">
-                  <a href="index.html" class="px-3 py-2 rounded-md text-sm font-medium text-cynergy-blue hover:bg-cynergy-gray hover:text-cynergy-orange transition-colors">Home</a>
-                  <a href="services.html" class="px-3 py-2 rounded-md text-sm font-medium text-cynergy-blue hover:bg-cynergy-gray hover:text-cynergy-orange transition-colors">Our Services</a>
-                  <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-cynergy-orange bg-cynergy-gray border border-cynergy-orange">Payroll Navigator</a>
-                </div>
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-cynergy-blue hover:text-cynergy-orange focus:outline-none">
-                        <span class="text-2xl">☰</span>
-                    </button>
-                </div>
-            </div>
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200 p-6 flex items-center justify-between shadow-sm flex-shrink-0 z-10">
+        <div>
+            <h1 class="text-2xl font-bold text-slate-900 flex items-center gap-2">
+                <i data-lucide="dollar-sign" class="text-green-600"></i> Payroll Process Guide
+            </h1>
+            <p class="text-slate-500 text-sm mt-1">A step-by-step workflow for compliance and execution</p>
         </div>
-        <!-- Mobile Menu Panel (Static for now, but could be managed by React if needed) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-cynergy-gray">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="index.html" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-cynergy-blue hover:bg-cynergy-gray hover:text-cynergy-orange">Home</a>
-                <a href="services.html" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-cynergy-blue hover:bg-cynergy-gray hover:text-cynergy-orange">Our Services</a>
-                <a href="#" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-cynergy-orange bg-cynergy-gray border border-cynergy-orange">Payroll Navigator</a>
-            </div>
+        <div class="hidden md:flex text-xs font-medium text-slate-400 bg-slate-100 px-3 py-1 rounded-full">
+            Reference: 2025 Guidelines
         </div>
     </header>
 
-    <!-- Main Content Container (React App will mount here) -->
-    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
-        <div id="react-root"></div>
-    </main>
+    <!-- Main Content Area -->
+    <div class="flex flex-1 overflow-hidden">
+        
+        <!-- Sidebar Navigation (Desktop) -->
+        <nav class="w-80 bg-white border-r border-slate-200 overflow-y-auto hidden md:block flex-shrink-0">
+            <div class="p-4 space-y-2" id="sidebar-nav">
+                <!-- Sidebar items injected by JS -->
+            </div>
+        </nav>
 
-    <!-- Footer (Main site footer, remains static) -->
-    <footer class="bg-white border-t border-cynergy-gray mt-auto">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <p class="text-center text-gray-400 text-xs">
-                Interactive Payroll Guide based on "Payroll Workflow: 5-Phase Execution Guide". 
-                This tool is for educational purposes.
-            </p>
-        </div>
-    </footer>
+        <!-- Main Layout Wrapper -->
+        <div class="flex flex-col flex-1 min-w-0">
+            
+            <!-- Mobile Nav Header (Horizontal Scroll) -->
+            <div class="md:hidden flex overflow-x-auto p-2 bg-white border-b space-x-2 flex-shrink-0 scrollbar-hide" id="mobile-nav">
+                <!-- Mobile items injected by JS -->
+            </div>
 
-    <script type="module">
-        import React from 'react';
-        import ReactDOM from 'react-dom/client';
-        import PayrollFlow from './components/PayrollFlow.tsx'; // Ensure path is correct
-
-        // Main App Component for Payroll Navigator page
-        const PayrollNavigatorApp = () => {
-            const [showInteractiveGuide, setShowInteractiveGuide] = React.useState(false);
-
-            return (
-                <div className="h-full">
-                    {!showInteractiveGuide ? (
-                        <section id="view-intro" className="fade-in block">
-                            <div className="text-center py-12 px-4 sm:px-6 lg:px-8 bg-white rounded-2xl shadow-sm border border-cynergy-gray mb-8">
-                                <h2 className="text-3xl font-extrabold text-cynergy-blue sm:text-4xl">Mastering the Payroll Lifecycle</h2>
-                                <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-                                    Setting up payroll involves a strict sequence of 5 critical phases. 
-                                    From federal registration to filing annual returns, missing a step can lead to compliance failures.
-                                </p>
-                                <div className="mt-8 flex justify-center">
-                                    <button 
-                                        onClick={() => {
-                                            setShowInteractiveGuide(true);
-                                            window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top when starting guide
-                                        }} 
-                                        className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-cynergy-orange hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cynergy-orange transition-colors"
-                                    >
-                                        Start the Journey <span class="ml-2">→</span>
-                                    </button>
-                                </div>
-                                {/* Infographic Image */}
-                                <div class="mt-8 max-w-4xl mx-auto">
-                                    <img 
-                                        src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAMEBgUGBgYadd below page when clicked on the "start the Journey" 
-"Decoding Your Payroll Tax Duties: An Employer's Quick Guide" alt="Decoding Your Payroll Tax Duties Infographic" class="max-w-full h-auto rounded-lg shadow-md mx-auto" />
-                                </div>
-
-                                {/* Overview Grid (Static for intro, replaced by interactive guide) */}
-                                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 mt-8">
-                                    <div class="phase-card bg-white p-6 rounded-xl shadow-sm border border-cynergy-gray">
-                                        <div class="text-cynergy-orange text-3xl mb-4">1️⃣</div>
-                                        <h3 class="text-lg font-semibold text-cynergy-blue">Registration</h3>
-                                        <p class="mt-2 text-sm text-gray-600">EIN, State Tax, & System Setup</p>
-                                    </div>
-                                    <div class="phase-card bg-white p-6 rounded-xl shadow-sm border border-cynergy-gray">
-                                        <div class="text-cynergy-blue text-3xl mb-4">2️⃣</div>
-                                        <h3 class="text-lg font-semibold text-cynergy-blue">Onboarding</h3>
-                                        <p class="mt-2 text-sm text-gray-600">I-9, W-4, & Employee Data</p>
-                                    </div>
-                                    <div class="phase-card bg-white p-6 rounded-xl shadow-sm border border-cynergy-gray">
-                                        <div class="text-cynergy-orange text-3xl mb-4">3️⃣</div>
-                                        <h3 class="text-lg font-semibold text-cynergy-blue">Running Payroll</h3>
-                                        <p class="mt-2 text-sm text-gray-600">Gross to Net Calculation</p>
-                                    </div>
-                                    <div class="phase-card bg-white p-6 rounded-xl shadow-sm border border-cynergy-gray">
-                                        <div class="text-cynergy-blue text-3xl mb-4">4️⃣</div>
-                                        <h3 class="text-lg font-semibold text-cynergy-blue">Depositing</h3>
-                                        <p class="mt-2 text-sm text-gray-600">EFTPS Schedules & Rules</p>
-                                    </div>
-                                    <div class="phase-card bg-white p-6 rounded-xl shadow-sm border border-cynergy-gray">
-                                        <div class="text-cynergy-orange text-3xl mb-4">5️⃣</div>
-                                        <h3 class="text-lg font-semibold text-cynergy-blue">Filing</h3>
-                                        <p class="mt-2 text-sm text-gray-600">Quarterly & Annual Returns</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    ) : (
-                        <PayrollFlow />
-                    )}
+            <!-- Content Panel -->
+            <main class="flex-1 overflow-y-auto p-4 md:p-8 bg-slate-50" id="main-scroll">
+                <div class="max-w-3xl mx-auto space-y-6" id="content-area">
+                    <!-- Dynamic Content injected by JS -->
                 </div>
-            );
-        };
+            </main>
+        </div>
+    </div>
 
-        const root = ReactDOM.createRoot(document.getElementById('react-root'));
-        root.render(
-            <React.StrictMode>
-                <PayrollNavigatorApp />
-            </React.StrictMode>
-        );
+    <script>
+        // --- Data Structure (Matching React Source) ---
+        const phases = [
+            {
+                id: 0,
+                title: "Registration & Setup",
+                subtitle: "Establish Legal Identity",
+                icon: "building-2",
+                color: "bg-blue-500",
+                textColor: "text-blue-500",
+                borderColor: "border-blue-500",
+                ringColor: "ring-blue-500",
+                content: [
+                    {
+                        heading: "1. Federal EIN",
+                        details: "Obtain your 9-digit Employer Identification Number (00-0000000) from the IRS.",
+                        subtext: "Apply online for immediate issuance. Must be your own EIN (not a predecessor's).",
+                        actionItem: "Apply via IRS Website or Form SS-4"
+                    },
+                    {
+                        heading: "2. State & Local Registration",
+                        details: "Register in every state where employees reside.",
+                        points: [
+                            "State Income Tax (SIT): For withholding state taxes.",
+                            "State Unemployment (SUI): Register with labor dept (e.g., TWC, EDD). Strict timelines apply.",
+                            "Local Taxes: City/County specific registrations."
+                        ]
+                    },
+                    {
+                        heading: "3. Choose Payroll System",
+                        details: "Select how you will process payments.",
+                        points: [
+                            "PSP (Payroll Service Provider): Processes payments, you retain liability.",
+                            "PEO (Professional Employer Org): Co-employer, shares liability.",
+                            "Software: Automates calculations/filings, integrates with internal systems."
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 1,
+                title: "Employee Onboarding",
+                subtitle: "Data Collection",
+                icon: "users",
+                color: "bg-indigo-500",
+                textColor: "text-indigo-500",
+                borderColor: "border-indigo-500",
+                ringColor: "ring-indigo-500",
+                content: [
+                    {
+                        heading: "1. Verify Eligibility (I-9)",
+                        details: "Confirm legal right to work in the U.S.",
+                        subtext: "Review acceptable docs (Passport, Driver's License + SS Card, etc.).",
+                        actionItem: "Complete USCIS Form I-9"
+                    },
+                    {
+                        heading: "2. Tax Withholding (W-4)",
+                        details: "Determine tax withholding amounts.",
+                        points: [
+                            "Federal: IRS Form W-4. Default to 'Single' if not furnished.",
+                            "State: Specific forms (e.g., G-4 for GA, HW-4 for HI)."
+                        ]
+                    },
+                    {
+                        heading: "3. Essential Data",
+                        details: "Record exact Name and SSN.",
+                        subtext: "Warning: Do NOT accept ITINs (starting with '9') for employment.",
+                        critical: true
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "Running Payroll",
+                subtitle: "Calculation Order",
+                icon: "calculator",
+                color: "bg-purple-500",
+                textColor: "text-purple-500",
+                borderColor: "border-purple-500",
+                ringColor: "ring-purple-500",
+                content: [
+                    {
+                        heading: "Step 1: Gross Pay",
+                        details: "Hourly Rate × Hours OR Salary ÷ Pay Periods",
+                        type: "calculation"
+                    },
+                    {
+                        heading: "Step 2: Pre-Tax Deductions",
+                        details: "Subtract 401(k), Health Insurance, etc.",
+                        subtext: "Lowers taxable wage base.",
+                        type: "calculation"
+                    },
+                    {
+                        heading: "Step 3: Calculate Taxes",
+                        details: "Apply rates to taxable wages:",
+                        points: [
+                            "Fed Income Tax: Based on W-4 & Tables",
+                            "Social Security: 6.2% (Limit: $176,100 for 2025)",
+                            "Medicare: 1.45% (No limit)",
+                            "Addtl. Medicare: 0.9% (Over $200k)",
+                            "State/Local: Varies (e.g., CA SDI 1.2%)"
+                        ],
+                        type: "calculation"
+                    },
+                    {
+                        heading: "Step 4: Post-Tax Deductions",
+                        details: "Subtract Garnishments (Child Support, etc.)",
+                        subtext: "Limits apply (e.g., 25% of disposable earnings).",
+                        type: "calculation"
+                    },
+                    {
+                        heading: "Step 5: Net Pay",
+                        details: "Issue Final Payment via Check or Direct Deposit",
+                        type: "result"
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "Depositing Taxes",
+                subtitle: "Federal Remittance",
+                icon: "landmark",
+                color: "bg-emerald-600",
+                textColor: "text-emerald-600",
+                borderColor: "border-emerald-600",
+                ringColor: "ring-emerald-600",
+                content: [
+                    {
+                        heading: "Determine Schedule",
+                        details: "Based on 'Lookback Period' (Previous 4 quarters ending June 30).",
+                        points: [
+                            "Monthly Depositor: Liability ≤ $50k. Due 15th of next month.",
+                            "Semiweekly Depositor: Liability > $50k. Due Wed or Fri based on payday."
+                        ]
+                    },
+                    {
+                        heading: "The $100k Rule",
+                        details: "Accumulate $100k+ in a single day?",
+                        subtext: "Must deposit by the NEXT business day.",
+                        critical: true
+                    },
+                    {
+                        heading: "FUTA Deposits",
+                        details: "Employer-only tax (6% on first $7k).",
+                        subtext: "Deposit quarterly if liability > $500."
+                    }
+                ]
+            },
+            {
+                id: 4,
+                title: "Filing Returns",
+                subtitle: "Quarterly & Annual",
+                icon: "file-text",
+                color: "bg-orange-500",
+                textColor: "text-orange-500",
+                borderColor: "border-orange-500",
+                ringColor: "ring-orange-500",
+                content: [
+                    {
+                        heading: "Quarterly Filings",
+                        points: [
+                            "Form 941: Wages & Federal Taxes. Due end of month after quarter.",
+                            "State Returns: Wage reports & Unemployment tax (e.g., DE 9)."
+                        ]
+                    },
+                    {
+                        heading: "Annual Filings",
+                        points: [
+                            "Form 940: Annual FUTA liability. Due Jan 31.",
+                            "W-2 / W-3: Employee wage statements & SSA transmittal. Due Jan 31."
+                        ]
+                    }
+                ]
+            }
+        ];
 
-        // Mobile menu toggle logic for the static header
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        if (btn && menu) {
-          btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-          });
+        // --- State Management ---
+        let activePhase = 0;
+
+        // --- Rendering Logic ---
+        function renderApp() {
+            renderSidebar();
+            renderMobileNav();
+            renderContent();
+            lucide.createIcons(); // Re-initialize icons
         }
+
+        function setActivePhase(index) {
+            if (index < 0 || index >= phases.length) return;
+            activePhase = index;
+            renderApp();
+            // Scroll content to top
+            document.getElementById('main-scroll').scrollTop = 0;
+        }
+
+        function renderSidebar() {
+            const sidebar = document.getElementById('sidebar-nav');
+            sidebar.innerHTML = phases.map((phase, index) => {
+                const isActive = activePhase === index;
+                const activeClasses = isActive 
+                    ? `border-${phase.color.replace('bg-', '')} ring-1 ring-${phase.color.replace('bg-', '')} bg-slate-50` 
+                    : 'border-transparent hover:bg-slate-50';
+                
+                const textColor = isActive ? 'text-slate-900' : 'text-slate-600';
+
+                return `
+                    <button
+                        onclick="setActivePhase(${index})"
+                        class="w-full text-left p-4 rounded-xl transition-all duration-200 flex items-center gap-3 border ${activeClasses}"
+                    >
+                        <div class="p-2 rounded-lg text-white shadow-sm ${phase.color}">
+                            <i data-lucide="${phase.icon}" class="w-5 h-5"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-bold text-sm ${textColor}">
+                                Phase ${index + 1}
+                            </div>
+                            <div class="text-xs text-slate-500">${phase.title}</div>
+                        </div>
+                        ${isActive ? '<i data-lucide="chevron-right" class="ml-auto w-4 h-4 text-slate-400"></i>' : ''}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function renderMobileNav() {
+            const nav = document.getElementById('mobile-nav');
+            nav.innerHTML = phases.map((phase, index) => {
+                const isActive = activePhase === index;
+                const classes = isActive 
+                    ? 'bg-slate-100 font-bold text-slate-900' 
+                    : 'text-slate-500';
+                return `
+                    <button
+                        onclick="setActivePhase(${index})"
+                        class="flex-shrink-0 p-2 rounded-lg text-sm transition-colors ${classes}"
+                    >
+                        Phase ${index + 1}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function renderContent() {
+            const container = document.getElementById('content-area');
+            const data = phases[activePhase];
+
+            // Header Card HTML
+            const headerHtml = `
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                    <div class="flex items-center gap-4 mb-2">
+                        <div class="p-3 rounded-xl text-white shadow-md ${data.color}">
+                            <i data-lucide="${data.icon}" class="w-8 h-8"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-slate-900">${data.title}</h2>
+                            <p class="text-slate-500">${data.subtitle}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Content Items HTML
+            const itemsHtml = data.content.map((item, idx) => {
+                const isResult = item.type === 'result';
+                const containerClasses = isResult 
+                    ? 'bg-green-50 border-green-100 ring-1 ring-green-200' 
+                    : 'bg-white border-slate-100';
+                
+                // Icon for the number bubble or warning
+                const iconHtml = item.critical 
+                    ? `<i data-lucide="info" class="w-5 h-5 text-red-500"></i>` 
+                    : `<div class="w-5 h-5 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center text-xs font-bold">${idx + 1}</div>`;
+
+                // Points List
+                const pointsHtml = item.points ? `
+                    <ul class="space-y-2 mb-3">
+                        ${item.points.map(pt => `
+                            <li class="flex items-start gap-2 text-sm text-slate-600 bg-slate-50 p-2 rounded-lg">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5"></i>
+                                <span>${pt}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                ` : '';
+
+                // Subtext Alert
+                const subtextHtml = item.subtext ? `
+                    <div class="text-sm mt-3 p-3 rounded-lg flex gap-2 ${item.critical ? 'bg-red-50 text-red-700' : 'bg-blue-50 text-blue-700'}">
+                        <i data-lucide="info" class="w-4 h-4 mt-0.5 flex-shrink-0"></i>
+                        <span>${item.subtext}</span>
+                    </div>
+                ` : '';
+
+                // Action Item Badge
+                const actionHtml = item.actionItem ? `
+                    <div class="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-400 border border-slate-200 px-3 py-1 rounded-full">
+                        <i data-lucide="calendar-clock" class="w-3 h-3"></i>
+                        Action: ${item.actionItem}
+                    </div>
+                ` : '';
+
+                return `
+                    <div class="rounded-xl p-6 shadow-sm border transition-all duration-300 hover:shadow-md ${containerClasses}">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 mt-1">
+                                ${iconHtml}
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-slate-800 text-lg mb-1">${item.heading}</h3>
+                                <p class="text-slate-600 mb-3 leading-relaxed">${item.details}</p>
+                                ${pointsHtml}
+                                ${subtextHtml}
+                                ${actionHtml}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Footer Navigation Buttons
+            const isFirst = activePhase === 0;
+            const isLast = activePhase === phases.length - 1;
+            
+            const prevBtnClass = isFirst 
+                ? 'text-slate-300 cursor-not-allowed' 
+                : 'text-slate-600 hover:bg-white hover:shadow-sm cursor-pointer';
+            
+            const nextBtnClass = isLast
+                ? 'text-slate-300 cursor-not-allowed'
+                : 'bg-slate-900 text-white hover:bg-slate-800 shadow-md cursor-pointer';
+
+            const footerHtml = `
+                <div class="flex justify-between pt-8 pb-12">
+                    <button 
+                        onclick="setActivePhase(${activePhase - 1})" 
+                        disabled="${isFirst}"
+                        class="px-6 py-2 rounded-lg font-medium transition-colors ${prevBtnClass}"
+                    >
+                        Previous Phase
+                    </button>
+                    <button 
+                        onclick="setActivePhase(${activePhase + 1})"
+                        disabled="${isLast}"
+                        class="px-6 py-2 rounded-lg font-medium transition-colors flex items-center gap-2 ${nextBtnClass}"
+                    >
+                        Next Phase <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            `;
+
+            container.innerHTML = headerHtml + `<div class="space-y-4">` + itemsHtml + `</div>` + footerHtml;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderApp();
+        });
+
     </script>
 </body>
 </html>
